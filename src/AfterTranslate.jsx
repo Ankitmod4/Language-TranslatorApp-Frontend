@@ -6,7 +6,8 @@ import 'react-toastify/dist/ReactToastify.css';
 const AfterTranslate = ({ getting, language }) => {
   const RefElement = useRef(null);
 
-  const Speak = () => {
+  const Speak = (e) => {
+    e.preventDefault();
     const data = RefElement.current.textContent;
     const utterance = new SpeechSynthesisUtterance(data);
  console.log(language)
@@ -145,12 +146,12 @@ const AfterTranslate = ({ getting, language }) => {
         </div>
       </div>
       <center>
-        <input 
-          type="submit"  
-          value="Translate to Voice" 
+      <button 
+          type="button" 
           onClick={Speak}  
-          className='m-4 btn btn-success p-3' 
-        />
+          className='m-4 btn btn-success p-3'>
+          Translate to Voice
+        </button>
       </center>
     </div>
   );
