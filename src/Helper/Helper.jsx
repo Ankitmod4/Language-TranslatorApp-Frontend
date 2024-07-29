@@ -1,1 +1,1 @@
-export const BackendURl = "https://languagetranslatorapp-backend-9.onrender.com";
+export const BackendURl = "https://backend-translator-al7oagmf5-ankitmod4s-projects.vercel.app";
