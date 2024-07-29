@@ -16,7 +16,7 @@ const Response = () => {
     toast.success("Wait for Response Generated");
 
     try {
-      if (correct == '') {
+      if (correct === '') {
         return;
       }
       const res = await axios.post('https://backend-translator.vercel.app/generate', {
@@ -34,7 +34,7 @@ const Response = () => {
 
   const languages = [
     'ENGLISH', 'SPANISH', 'FRENCH', 'ITALIAN', 'RUSSIAN', 'HINDI', 'CHINESE', 'JAPANESE',
-    'PORTUGUESE', 'ARABIC', 'URDU', 'MALAY', 'BENGALI', 'PUNJABI', 'TELUGU', 'TAMIL',
+    'PORTUGUESE', 'ARABIC', 'URDU', 'MALAY', 'BENGALI', 'TELUGU', 'TAMIL',
     'MARATHI', 'GUJARATI', 'INDONESIAN', 'GERMAN', 'TURKISH', 'KOREAN', 'VIETNAMESE',
     'POLISH', 'UKRAINIAN', 'DUTCH', 'PERSIAN', 'ROMANIAN', 'GREECE', 'HUNGARIAN',
     'RAJASTHANI'
@@ -42,6 +42,8 @@ const Response = () => {
   const clear = (e) => {
     e.preventDefault();
     setcorrect('');
+    setlanguage('');
+    setresponse('');
   }
   
   return (
@@ -49,7 +51,7 @@ const Response = () => {
       <ToastContainer />
       <div className="row justify-content-center">
         <div className="col-md-6">
-          <form>
+          <form onSubmit={dataSend}>
             <div className="mb-4  ">
               <input
                 type="text"
@@ -74,7 +76,7 @@ const Response = () => {
               </select>
             </div>
             <div className="text-center">
-              <button className="btn btn-primary btn-lg custom-hover p-3" onClick={dataSend}>SUBMIT</button>
+              <button className="btn btn-primary btn-lg custom-hover p-3" >SUBMIT</button>
             </div>
           </form>
         </div>

@@ -131,7 +131,7 @@ const AfterTranslate = ({ getting, language }) => {
     else {
       utterance.lang = 'en-US';
     }
-    toast.success("Speaking wait for 10 seconds");
+    toast.success("Speaking Please Wait..");
     speechSynthesis.speak(utterance);
   };
 
