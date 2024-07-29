@@ -1,0 +1,1 @@
+export const BackendURl = "https://languagetranslatorapp-backend-9.onrender.com";
