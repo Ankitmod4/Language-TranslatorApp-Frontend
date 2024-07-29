@@ -129,6 +129,7 @@ const AfterTranslate = ({ getting, language }) => {
     else {
       utterance.lang = 'en-US';
     }
+    alert('processing your audio to text please wait');
     speechSynthesis.speak(utterance);
   };
 
