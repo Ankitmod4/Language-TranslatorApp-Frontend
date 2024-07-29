@@ -1,1 +1,1 @@
-export const BackendURl = "https://backend-translator-al7oagmf5-ankitmod4s-projects.vercel.app";
+export const BackendURl = "https://backend-translator.vercel.app";

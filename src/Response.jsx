@@ -17,7 +17,7 @@ const Response = () => {
       if (correct == '') {
         return;
       }
-      const res = await axios.post('https://backend-translator-al7oagmf5-ankitmod4s-projects.vercel.app/generate', {
+      const res = await axios.post('https://backend-translator.vercel.app//generate', {
         prompt: data,
         
       })
