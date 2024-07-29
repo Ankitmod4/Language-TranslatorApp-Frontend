@@ -2,7 +2,8 @@ import React, { useState,useRef } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import AfterTranslate from './AfterTranslate'
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 const Response = () => {
   const [correct, setcorrect] = useState('');
@@ -12,7 +13,8 @@ const Response = () => {
   const dataSend = async (e) => {
     e.preventDefault();
     const data = `Translate the following text to ${language} in one line only: '${correct}'`;
-    
+    toast.success("Wait for Response Generated");
+
     try {
       if (correct == '') {
         return;
@@ -22,10 +24,10 @@ const Response = () => {
         
       })
       
-      
       setresponse(res.data.data);
     } 
     catch (error) {
+      toast.error("Error Due to Some Reasons");
       console.log(error.message);
     }
   }
@@ -44,6 +46,7 @@ const Response = () => {
   
   return (
     <div className="container mt-5">
+      <ToastContainer />
       <div className="row justify-content-center">
         <div className="col-md-6">
           <form>

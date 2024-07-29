@@ -1,5 +1,7 @@
 import React, { useRef } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const AfterTranslate = ({ getting, language }) => {
   const RefElement = useRef(null);
@@ -128,12 +130,13 @@ const AfterTranslate = ({ getting, language }) => {
     else {
       utterance.lang = 'en-US';
     }
-
+    toast.success("Speaking wait for 10 seconds");
     speechSynthesis.speak(utterance);
   };
 
   return (
     <div className="container mt-5">
+      <ToastContainer />
       <div className="row justify-content-center">
         <div className="col-md-6">
           <div className="p-4 bg-light border rounded shadow-sm">
