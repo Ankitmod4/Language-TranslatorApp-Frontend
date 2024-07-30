@@ -45,8 +45,7 @@ const Response = () => {
   const clear = (e) => {
     e.preventDefault();
     setcorrect('');
-    setlanguage('');
-    setresponse('');
+   
   }
   
   return (
