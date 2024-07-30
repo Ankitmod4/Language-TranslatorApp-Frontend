@@ -6,6 +6,7 @@ import Navbar from './Navbar'
 import Data from './Data'
 import Response from './Response'
 import AfterTranslate from './AfterTranslate'
+import Footer from './Footer'
 
 function App() {
   const videoRef = useRef(null)
@@ -18,17 +19,13 @@ function App() {
   }, [videoRef])
   
   return (
-    <div className="app-container ">
-      <video autoPlay loop ref={videoRef}  className="background-video"  >
-        <source src={video}  type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
-      <div className="content">
+    
+      <div>
         <Navbar /> <br /><br />
         <Response />
-        {/* <Data /> */}
+        <Footer />
       </div>
-    </div>
+    
   )
 }
 

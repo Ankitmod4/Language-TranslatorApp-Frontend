@@ -24,4 +24,29 @@
     color: white;
     padding: 20px;
   }
+  .navbar {
+    padding: 10px 0;
+  }
+  
+  .navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #fff !important;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .navbar .container {
+    justify-content: center;
+  }
+  
+  @media (max-width: 768px) {
+    .navbar {
+      padding: 20px 0;
+    }
+    .navbar-brand {
+      font-size: 1.2rem;
+    }
+  }
   

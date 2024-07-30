@@ -75,10 +75,11 @@ const AfterTranslate = ({ getting, language }) => {
       utterance.lang = 'en-US';
     }
 
-    setTimeout(() => {
+    utterance.onend = () => {
       setLoading(false);
-      speechSynthesis.speak(utterance);
-    }, 500);
+    };
+
+    speechSynthesis.speak(utterance);
   };
 
   return (
