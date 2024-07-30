@@ -6,7 +6,7 @@ const Footer = () => {
     <footer className="footer">
       <p>© 2024 Universal Translator</p>
       <div className="footer-links">
-        <a href="#">Privacy Policy</a>
+        <a href="#">Privacy Policy</a> 
         <a href="#">Contact Us</a>
       </div>
     </footer>
