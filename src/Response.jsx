@@ -12,7 +12,7 @@ const Response = () => {
   const [response, setresponse] = useState('')
   const dataSend = async (e) => {
     e.preventDefault();
-    const data = `Translate the following text to ${language} in one line only: '${correct}'`;
+    const data = `Translate the following text to ${language} and respond with only the translation: '${correct}'`;
 
     try {
       if (correct === '') {
