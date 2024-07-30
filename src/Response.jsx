@@ -7,7 +7,7 @@ import AfterTranslate from './AfterTranslate'
 import axios from 'axios';
 const Response = () => {
   const [correct, setcorrect] = useState('');
-
+  const [loading, setLoading] = useState(false);
   const [language,setlanguage]=useState('')
   const [response, setresponse] = useState('')
   const dataSend = async (e) => {
@@ -18,6 +18,7 @@ const Response = () => {
       if (correct === '') {
         return;
       }
+      setLoading(true)
       const res = await axios.post('https://backend-translator.vercel.app/generate', {
         prompt: data,
         
@@ -27,6 +28,10 @@ const Response = () => {
     } 
     catch (error) {
       console.log(error.message);
+    }
+   
+    finally {
+      setLoading(false);
     }
   }
 
@@ -73,7 +78,9 @@ const Response = () => {
               </select>
             </div>
             <div className="text-center">
-              <button className="btn btn-primary btn-lg custom-hover p-3" >SUBMIT</button>
+           
+              <button className="btn btn-primary btn-lg custom-hover p-3" type="submit" disabled={loading}>{ loading? 'Processing':'SUBMIT'}</button>
+             
             </div>
           </form>
         </div> 
