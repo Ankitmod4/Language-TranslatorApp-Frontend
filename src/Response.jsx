@@ -45,7 +45,7 @@ const Response = () => {
   const clear = (e) => {
     e.preventDefault();
     setcorrect('');
-   
+    setresponse('');
   }
   
   return (
