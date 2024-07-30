@@ -8,7 +8,7 @@ const Navbar = () => {
         <a className="navbar-brand text-white font-monospace text-capitalize" href="#">UNIVERSAL TRANSLATOR</a>
       </div>
     </nav>
-   </>
+   </> 
   )
 }
 
