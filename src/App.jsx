@@ -23,7 +23,7 @@ function App() {
       <div>
         <Navbar /> <br /><br />
         <Response />
-        <Footer />
+      
       </div>
     
   )
