@@ -3,18 +3,24 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import AfterTranslate from './AfterTranslate'
 
-
+ 
 import axios from 'axios';
 const Response = () => {
   const [correct, setcorrect] = useState('');
   const [loading, setLoading] = useState(false);
-  const [language,setlanguage]=useState('')
+  const [language,setlanguage]=useState('ENGLISH')
   const [response, setresponse] = useState('')
+
+  const Handleclick = (e) => {
+    const selectedLanguage = e.target.value;
+    setlanguage(selectedLanguage ? selectedLanguage : 'ENGLISH');
+  }; 
   const dataSend = async (e) => {
     e.preventDefault();
     const data = `Translate the following text to ${language} and respond with only the translation: '${correct}'`;
 
     try {
+      
       if (correct === '') {
         return;
       }
@@ -22,8 +28,8 @@ const Response = () => {
       const res = await axios.post('https://backend-translator.vercel.app/generate', {
         prompt: data,
         
-      })
-      
+      }) 
+      console.log(language)
       setresponse(res.data.data);
     } 
     catch (error) {
@@ -66,7 +72,7 @@ const Response = () => {
         
             <div className="mb-4">
               <label htmlFor="exampleSelect" className="form-label ">Select Language</label>
-              <select className="form-select border border-4 border-black p-3"   id="exampleSelect" onChange={(e)=>setlanguage(e.target.value) }>
+              <select className="form-select border border-4 border-black p-3"   id="exampleSelect" onChange={Handleclick}>
                 {
                   languages.map((e, i) => ( 
                     <>
