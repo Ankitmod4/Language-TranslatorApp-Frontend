@@ -8,12 +8,12 @@ import axios from 'axios';
 const Response = () => {
   const [correct, setcorrect] = useState('');
   const [loading, setLoading] = useState(false);
-  const [language,setlanguage]=useState('ENGLISH')
+  const [language, setlanguage] = useState('ENGLISH');
   const [response, setresponse] = useState('')
 
   const Handleclick = (e) => {
     const selectedLanguage = e.target.value;
-    setlanguage(selectedLanguage ? selectedLanguage : 'ENGLISH');
+    setlanguage(selectedLanguage);
   }; 
   const dataSend = async (e) => {
     e.preventDefault();
