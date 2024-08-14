@@ -79,7 +79,14 @@ const AfterTranslate = ({ getting, language }) => {
       setLoading(false);
     };
 
-    speechSynthesis.speak(utterance);
+    setTimeout(() => {
+      speechSynthesis.speak(utterance);
+
+    }, 1000);
+
+    
+  
+    
   };
 
   return (

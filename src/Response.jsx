@@ -29,7 +29,7 @@ const Response = () => {
         prompt: data,
         
       }) 
-      console.log(language)
+      console.log(language) 
       setresponse(res.data.data);
     } 
     catch (error) {
