@@ -79,7 +79,7 @@ const AfterTranslate = ({ getting, language }) => {
       setLoading(false);
     };
 
-   
+    utterance.rate = 0.8;
       speechSynthesis.speak(utterance);
 
    
