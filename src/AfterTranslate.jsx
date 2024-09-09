@@ -1,93 +1,65 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState,useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const AfterTranslate = ({ getting, language }) => {
   const RefElement = useRef(null);
   const [loading, setLoading] = useState(false);
 
+  const languageMap = {
+    JAPANESE: 'ja',
+    CHINESE: 'zh',
+    RUSSIAN: 'ru',
+    ITALIAN: 'it',
+    HINDI: 'hi',
+    SPANISH: 'es',
+    FRENCH: 'fr',
+    PORTUGUESE: 'pt',
+    ARABIC: 'ar',
+    URDU: 'ur',
+    MALAY: 'ms',
+    BENGALI: 'bn',
+    PUNJABI: 'pa',
+    TELUGU: 'te',
+    TAMIL: 'ta',
+    MARATHI: 'mr',
+    GUJARATI: 'gu',
+    INDONESIAN: 'id',
+    GERMAN: 'de',
+    TURKISH: 'tr',
+    KOREAN: 'ko',
+    VIETNAMESE: 'vi',
+    POLISH: 'pl',
+    UKRAINIAN: 'uk',
+    DUTCH: 'nl',
+    PERSIAN: 'fa',
+    ROMANIAN: 'ro',
+    GREECE: 'el',
+    HUNGARIAN: 'hu',
+    RAJASTHANI: 'raj',
+  };
+  
   const Speak = (e) => {
     e.preventDefault();
     setLoading(true);
+  
     const data = RefElement.current.textContent;
     const utterance = new SpeechSynthesisUtterance(data);
-
-    if (language === 'JAPANESE') {
-      utterance.lang = 'ja';
-    } else if (language === 'CHINESE') {
-      utterance.lang = 'zh';
-    } else if (language === 'RUSSIAN') {
-      utterance.lang = 'ru';
-    } else if (language === 'ITALIAN') {
-      utterance.lang = 'it';
-    } else if (language === 'HINDI') {
-      utterance.lang = 'hi';
-    } else if (language === 'SPANISH') {
-      utterance.lang = 'es';
-    } else if (language === 'FRENCH') {
-      utterance.lang = 'fr';
-    } else if (language === 'PORTUGUESE') {
-      utterance.lang = 'pt';
-    } else if (language === 'ARABIC') {
-      utterance.lang = 'ar';
-    } else if (language === 'URDU') {
-      utterance.lang = 'ur';
-    } else if (language === 'MALAY') {
-      utterance.lang = 'ms';
-    } else if (language === 'BENGALI') {
-      utterance.lang = 'bn';
-    } else if (language === 'PUNJABI') {
-      utterance.lang = 'pa';
-    } else if (language === 'TELUGU') {
-      utterance.lang = 'te';
-    } else if (language === 'TAMIL') {
-      utterance.lang = 'ta';
-    } else if (language === 'MARATHI') {
-      utterance.lang = 'mr';
-    } else if (language === 'GUJARATI') {
-      utterance.lang = 'gu';
-    } else if (language === 'INDONESIAN') {
-      utterance.lang = 'id';
-    } else if (language === 'GERMAN') {
-      utterance.lang = 'de';
-    } else if (language === 'TURKISH') {
-      utterance.lang = 'tr';
-    } else if (language === 'KOREAN') {
-      utterance.lang = 'ko';
-    } else if (language === 'VIETNAMESE') {
-      utterance.lang = 'vi';
-    } else if (language === 'POLISH') {
-      utterance.lang = 'pl';
-    } else if (language === 'UKRAINIAN') {
-      utterance.lang = 'uk';
-    } else if (language === 'DUTCH') {
-      utterance.lang = 'nl';
-    } else if (language === 'PERSIAN') {
-      utterance.lang = 'fa';
-    } else if (language === 'ROMANIAN') {
-      utterance.lang = 'ro';
-    } else if (language === 'GREECE') {
-      utterance.lang = 'el';
-    } else if (language === 'HUNGARIAN') {
-      utterance.lang = 'hu';
-    } else if (language === 'RAJASTHANI') {
-      utterance.lang = 'raj';
-    } else {
-      utterance.lang = 'en-US';
-    }
-
+    utterance.lang = languageMap[language] || 'en-US'; 
+  
+    utterance.rate = 0.8;
+  
     utterance.onend = () => {
       setLoading(false);
     };
-
-    utterance.rate = 0.8;
-      speechSynthesis.speak(utterance);
-
-   
-
-    
   
-    
+    speechSynthesis.speak(utterance);
   };
+  useEffect(() => {
+    speechSynthesis.onvoiceschanged = () => {
+      speechSynthesis.getVoices();
+    };
+  }, []);
+  
 
   return (
     <div className="container mt-5">
