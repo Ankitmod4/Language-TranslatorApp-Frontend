@@ -83,10 +83,17 @@ const Response = () => {
               </select>
             </div>
             <div className="text-center">
-            
-              <button className="btn btn-danger btn-lg custom-hover p-3" type="submit" disabled={loading}>{ loading? 'Processing':'SUBMIT'}</button>
-             
-            </div>
+  {loading ? (
+    <div className="spinner-border text-danger" role="status">
+      <span className="visually-hidden">Loading...</span>
+    </div>
+  ) : (
+    <button className="btn btn-danger btn-lg custom-hover p-3" type="submit">
+      SUBMIT
+    </button>
+  )}
+</div>
+
           </form>
         </div> 
       </div>
