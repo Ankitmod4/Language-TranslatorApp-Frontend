@@ -71,14 +71,20 @@ const AfterTranslate = ({ getting, language }) => {
         </div>
       </div>
       <center>
-        <button 
-          type="button" 
-          onClick={Speak}  
-          className='m-4 btn btn-success p-3'
-          disabled={loading}>
-          {loading ? 'Processing...' : 'Translate to Voice'}
-        </button>
-      </center>
+  {loading ? (
+    <div className="spinner-border text-success" role="status">
+      <span className="visually-hidden">Processing...</span>
+    </div>
+  ) : (
+    <button 
+      type="button" 
+      onClick={Speak}  
+      className='m-4 btn btn-success p-3'>
+      Translate to Voice
+    </button>
+  )}
+</center>
+
     </div>
   );
 };
