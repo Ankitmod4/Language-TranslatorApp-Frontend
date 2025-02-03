@@ -1,9 +1,10 @@
-import React, { useRef, useState,useEffect } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const AfterTranslate = ({ getting, language }) => {
   const RefElement = useRef(null);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const languageMap = {
     JAPANESE: 'ja',
@@ -37,29 +38,41 @@ const AfterTranslate = ({ getting, language }) => {
     HUNGARIAN: 'hu',
     RAJASTHANI: 'raj',
   };
-  
+
   const Speak = (e) => {
     e.preventDefault();
     setLoading(true);
-  
+    setError(null);
+
     const data = RefElement.current.textContent;
     const utterance = new SpeechSynthesisUtterance(data);
-    utterance.lang = languageMap[language] || 'en-US'; 
-  
-    utterance.rate = 0.8;
-  
+    utterance.lang = languageMap[language] || 'en-US';
+
+    utterance.rate = 0.9;
+
     utterance.onend = () => {
       setLoading(false);
     };
-  
-    speechSynthesis.speak(utterance);
+
+    utterance.onerror = (event) => {
+      setLoading(false);
+      setError('Error occurred during speech synthesis.');
+      console.error('SpeechSynthesisError:', event.error);
+    };
+
+    if ('speechSynthesis' in window) {
+      speechSynthesis.speak(utterance);
+    } else {
+      setError('Speech synthesis is not supported in this browser.');
+      setLoading(false);
+    }
   };
+
   useEffect(() => {
     speechSynthesis.onvoiceschanged = () => {
       speechSynthesis.getVoices();
     };
   }, []);
-  
 
   return (
     <div className="container mt-5">
@@ -71,20 +84,21 @@ const AfterTranslate = ({ getting, language }) => {
         </div>
       </div>
       <center>
-  {loading ? (
-    <div className="spinner-border text-success" role="status">
-      <span className="visually-hidden">Processing...</span>
-    </div>
-  ) : (
-    <button 
-      type="button" 
-      onClick={Speak}  
-      className='m-4 btn btn-success p-3'>
-      Translate to Voice
-    </button>
-  )}
-</center>
-
+        {loading ? (
+          <div className="spinner-border text-success" role="status">
+            <span className="visually-hidden">Processing...</span>
+          </div>
+        ) : (
+          <button
+            type="button"
+            onClick={Speak}
+            className='m-4 btn btn-success p-3'
+          >
+            Translate to Voice
+          </button>
+        )}
+        {error && <div className="text-danger mt-3">{error}</div>}
+      </center>
     </div>
   );
 };
